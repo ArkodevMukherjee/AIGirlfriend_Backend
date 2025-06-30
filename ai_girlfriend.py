@@ -15,7 +15,7 @@ app.config['JWT_SECRET_KEY'] = 'super-secret-key'  # Replace with env var in pro
 jwt = JWTManager(app)
 
 # --- MONGO DB ---
-client = MongoClient("mongodb+srv://username:VvwnBeJMOue4jMs1@cluster0.n5ejfzl.mongodb.net/")
+client = MongoClient("mongodb+srv://username:VvwnBeJMOue4jMs1@cluster0.n5ejfzl.mongodb.net/?retryWrites=true&w=majority&tls=true")
 db = client['luna_db']
 users_col = db['users']
 

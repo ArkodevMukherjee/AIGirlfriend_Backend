@@ -3,8 +3,8 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
-from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.schema import SystemMessage, HumanMessage
+from langchain_google_genai import ChatGoogleGenerativeAI
 import datetime
 import os
 
@@ -15,16 +15,20 @@ app.config['JWT_SECRET_KEY'] = 'super-secret-key'  # Replace with env var in pro
 jwt = JWTManager(app)
 
 # --- MONGO DB ---
-client = MongoClient("mongodb+srv://username:V%22%40E2taMtt5=uU>@cluster0.i4vre7e.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+client = MongoClient("mongodb+srv://username:VvwnBeJMOue4jMs1@cluster0.n5ejfzl.mongodb.net/")
 db = client['luna_db']
 users_col = db['users']
 
+# OoagIiiq9W7ty64l
+# VvwnBeJMOue4jMs1
+
 # --- GEMINI ---
 os.environ['GOOGLE_API_KEY'] = "AIzaSyCxjoaEpXuLqK5TsRB7MG1k8dCA2XJuZe0"
+
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
-    google_api_key=os.environ["GOOGLE_API_KEY"],
-    temperature=0.7
+model="gemini-2.0-flash",
+google_api_key=os.environ['GOOGLE_API_KEY'],
+temperature=0.7
 )
 
 # --- ROUTES ---
@@ -104,5 +108,4 @@ def clear_history():
 
 # Run
 if __name__ == '__main__':
-    app.run(debug=True)
-
+    app.run(debug=True,use_reloader=False)

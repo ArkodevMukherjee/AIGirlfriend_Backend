@@ -45,7 +45,11 @@ def register():
 
     hashed = generate_password_hash(password)
     users_col.insert_one({"username": username, "password": hashed, "chat_history": []})
-    return jsonify({"msg": "User registered successfully"})
+    access_token = create_access_token(identity=username, expires_delta=datetime.timedelta(hours=1))
+    return jsonify({
+        "msg": "User registered successfully",
+        "access_token": access_token
+    })
 
 # Login
 @app.route('/login', methods=['POST'])

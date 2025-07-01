@@ -32,7 +32,10 @@ temperature=0.7
 )
 
 # --- ROUTES ---
-
+@app.route("/")
+def health():
+    return "OK", 200
+    
 # Register
 @app.route('/register', methods=['POST'])
 def register():
